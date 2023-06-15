@@ -24,6 +24,11 @@ function filter(req, res){
     const reqCountry = req.params.country;
     console.log('reqCountry: ', reqCountry)
     console.log(childrens.children[0].children)
+    const resultChildrens = childrens.children[0].children.map((item) => {
+        return item.children[0].children.filter((item2) => {
+            return item2.country == reqCountry;
+        });
+    })
     
 }
 module.exports = {
