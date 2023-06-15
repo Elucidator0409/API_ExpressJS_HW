@@ -1,15 +1,15 @@
-const children = require('../file/data.json')
+const childrens = require('../file/data.json')
 
 
 const fs = require("fs");
 
 function readFile(req,res){
     console.log("Get data")
-    res.json(children)
+    res.json(childrens)
 }
 
 function writeFile(req,res){
-    const jsonString = JSON.stringify(children);
+    const jsonString = JSON.stringify(childrens);
     fs.writeFileSync('./output2.json', jsonString, err => {
         if (err) {
             console.log('Error writing file', err)
@@ -17,21 +17,14 @@ function writeFile(req,res){
             console.log('Successfully wrote file')
         }
     })
-    res.json(children)
+    res.json(childrens)
 }
 const data = require('../file/output2.json')
-function filter(req, res, next){
+function filter(req, res){
+    const reqCountry = req.params.country;
+    console.log('reqCountry: ', reqCountry)
+    console.log(childrens.children[0].children)
     
-    const filters = req.query;
-  const filteredUsers = data.filter(user => {
-    let isValid = true;
-    for (key in filters) {
-      console.log(key, user[key], filters[key]);
-      isValid = isValid && user[key] == filters[key];
-    }
-    return isValid;
-  });
-  res.send(filteredUsers);
 }
 module.exports = {
     readFile,
