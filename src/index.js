@@ -6,6 +6,7 @@ const port = 8000;
 
 const productsRouter = require('./routes/listproducts');
 const filesRouter = require('./routes/file');
+const mathRouter = require('./routes/math');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -15,7 +16,7 @@ app.use('/v1/', productsRouter);
 
 app.use('/v1/', filesRouter);
 
-
+app.use('/v1/', mathRouter);
 
 
 app.get('/message/:msg', (req, res) => {
