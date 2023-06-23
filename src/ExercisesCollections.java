@@ -60,8 +60,7 @@ public class ExercisesCollections {
                 "A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). " +
                 "Length and appearance do not determine whether a section in a paper is a paragraph.";
         TreeMap<String, Integer> map = new TreeMap<>();
-        String elementNeedToCounting = "p";
-        countingCharacters(p, map, elementNeedToCounting);
+        countingCharacters(p, map);
 
 
         //Ex13
@@ -86,11 +85,13 @@ public class ExercisesCollections {
         insertToArraylistAtSpecificIndex(ex15,2);
 
         //Ex16
-        List<Object> ex16 = new ArrayList<>();
+        List<Integer> ex16 = new ArrayList<>();
         ex16.add(4);
         ex16.add(2);
-        ex16.add(3);
         ex16.add(1);
+       ex16.add(3);
+        ex16.add(2);
+//        ex16.add(5);
         priorityQueueOfArrayList(ex16);
 
         //Ex17
@@ -210,7 +211,7 @@ public class ExercisesCollections {
     }
 
     public static void treeSetFromArrayList(ArrayList<Integer> arrayList){
-        TreeSet<Object> treeSet = new TreeSet<Object>(arrayList);
+        TreeSet<Object> treeSet = new TreeSet<>(arrayList);
         treeSet.add(45);
         treeSet.add(15);
         treeSet.add(99);
@@ -234,8 +235,8 @@ public class ExercisesCollections {
     }
 
     public static void removeDuplicateFromArraylist(ArrayList<Object> arr){
-        HashSet<Object> hashSet = new HashSet<Object>(arr);
-        ArrayList<Object> newArr = new ArrayList<Object>(hashSet);
+        HashSet<Object> hashSet = new HashSet<>(arr);
+        ArrayList<Object> newArr = new ArrayList<>(hashSet);
         System.out.println("\nEx10 ");
         System.out.println("Arraylist "+arr+"  after removing duplicate elements is : "+newArr);
     }
@@ -247,10 +248,10 @@ public class ExercisesCollections {
         System.out.println("Cloned array list: " + clone);
     }
 
-    public static TreeMap<String, Integer> countingCharacters(String p , TreeMap<String,Integer> map, String check){
+    public static TreeMap<String, Integer> countingCharacters(String p , TreeMap<String,Integer> map){
         p = p.replaceAll("\\p{P}", ""); // replace all punctuations
         p = p.toLowerCase(); // turn all words into lowercase
-        String[] words = p.split("");
+        String[] words = p.split(" ");
             // Collect the word count
             for (String word : words) {
                 if(!map.containsKey(word)){
@@ -263,12 +264,12 @@ public class ExercisesCollections {
 
         Iterator<Map.Entry<String, Integer>> iter = map.entrySet().iterator();
         System.out.println("\nEx12 ");
-//        System.out.println("List of string : ");
-//        while(iter.hasNext()) {
-//            Map.Entry<String, Integer> entry = iter.next();
-//            System.out.println(entry.getKey() + ": " + entry.getValue());
-//        }
-        System.out.println("Counting on string '"+ check+ "' in paragraph is: " + map.get(check));
+        System.out.println("List of string : ");
+        while(iter.hasNext()) {
+            Map.Entry<String, Integer> entry = iter.next();
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+//        System.out.println("Counting on string '"+ check+ "' in paragraph is: " + map.get(check));
         return map;
     }
 
@@ -315,8 +316,9 @@ public class ExercisesCollections {
         System.out.println("List after adding element at index "+index+" : "+list);
     }
 
-    public static void priorityQueueOfArrayList(List<Object> list){
-        PriorityQueue<Object> priorityQueue = new PriorityQueue<Object>(list);
+    public static void priorityQueueOfArrayList(List<Integer> list){
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+        priorityQueue.addAll(list);
         System.out.println("\nEx16");
         System.out.println("List no prior: "+list);
         System.out.println("Priority Queue of ArrayList : "+priorityQueue);
